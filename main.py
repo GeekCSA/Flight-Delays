@@ -1,13 +1,16 @@
-import csv
+import tensorflow as tf
+import numpy as np
+import pandas as pd
 
-with open('Data_set/demo_flights.csv') as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=',')
-    line_count = 0
-    for row in csv_reader:
-        if line_count == 0:
-            print(row[4])
-        else:
-            print(row[4])
-        line_count += 1
+df = pd.read_csv("dataset/mini_flights.csv")
+titles = df.values
+first = titles[0]
 
-    print('Processed {line_count} lines.')
+features = len(df.columns)
+
+x = tf.placeholder(tf.float32, [None, features])
+y_ = tf.placeholder(tf.float32, [None, 1])
+W = tf.Variable(tf.zeros([features,1]))
+b = tf.Variable(tf.zeros([1]))
+# data_x = np.array([[2,4],[3,9],[4,16],[6,36],[7,49]])
+# data_y = np.array([[70],[110],[165],[390],[550]])
