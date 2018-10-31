@@ -2,15 +2,20 @@ import tensorflow as tf
 import numpy as np
 import pandas as pd
 
-df = pd.read_csv("dataset/mini_flights.csv")
-titles = df.values
-first = titles[0]
+full_df = pd.read_csv("dataset/mini_flights.csv")
 
-features = len(df.columns)
+features = len(full_df.columns)
+print(full_df.values)
+x_df = full_df.drop(['ARRIVAL_DELAY'], axis=1)
 
-x = tf.placeholder(tf.float32, [None, features])
-y_ = tf.placeholder(tf.float32, [None, 1])
-W = tf.Variable(tf.zeros([features,1]))
-b = tf.Variable(tf.zeros([1]))
-# data_x = np.array([[2,4],[3,9],[4,16],[6,36],[7,49]])
-# data_y = np.array([[70],[110],[165],[390],[550]])
+print(60*"-")
+
+print(x_df.values)
+
+
+# x = tf.placeholder(tf.float32, [None, features])
+# y_ = tf.placeholder(tf.float32, [None, 1])
+# W = tf.Variable(tf.zeros([features,1]))
+# b = tf.Variable(tf.zeros([1]))
+# data_x = df.values
+# data_y = np.array(df.loc[:,['ARRIVAL_DELAY']])
