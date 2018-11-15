@@ -1,4 +1,4 @@
-# Project name: predicte delay time of aircraft landing in USA
+# Predicte delay time of aircraft landing in USA
 
 The purpose of the project is to predict the delay of the plane landing due to the weather and geographical location of the airport on domestic flights in the USA.
 
