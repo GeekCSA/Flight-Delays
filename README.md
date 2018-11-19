@@ -63,7 +63,8 @@ The project consists of several stages:
 
 1.  Open terminal
 2.  Perform a clone for the project
-3.  Write
+3.  Extract the dataset file into the dataset folder
+4.  Write
 ```bash
 python main.py
 ```
