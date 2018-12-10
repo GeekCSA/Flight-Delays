@@ -66,7 +66,7 @@ def train(data_x, data_y, x_test, y_test):
     loss = tf.reduce_mean(tf.pow(y - y_, 2))
     update = tf.train.AdamOptimizer(0.0005).minimize(loss)
 
-    epochs = 100000
+    epochs = 10
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
 
@@ -84,8 +84,14 @@ def train(data_x, data_y, x_test, y_test):
 
         ypretest = y.eval(feed_dict={x: x_test})
         costabstest = sess.run(tf.reduce_mean(tf.abs(ypretest - y_test)))
+
+        detailes = costabstest, number_of_neurons_each_layer, epochs
+        with open('nnStrecture.csv', 'a') as fd:
+            fd.write(str(detailes))
+            fd.write("\n")
+
         print('\nIteration:', i, "MAETest: ", costabstest)
-        return costabstest # weights_and_bias_of_layers
+        return costabstest 
 
 def test(x_test, W, b):
 
@@ -130,7 +136,7 @@ def main():
 
     # Read dataset file
     print("\n\nStart reading")
-    full_df = pd.read_csv("dataset/ROW100k.csv")
+    full_df = pd.read_csv("dataset/ROW3k.csv")
     np_full_df = np.array(full_df, dtype='f')
     print("\tFinish reading")
 
@@ -157,8 +163,6 @@ def main():
     print("\n\nStart training")
     W_b = train(x_train, y_train, x_test, y_test)
     print("\tFinish training")
-
-    print(W_b)
 
 if __name__== "__main__":
     main()
